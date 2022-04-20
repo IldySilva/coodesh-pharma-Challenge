@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pharmainc/data/patientNetwork/patientNetwork.dart';
 import 'package:pharmainc/domain/entities/patient_entity.dart';
+import 'package:pharmainc/presentation/filtered_page.dart';
 import 'package:pharmainc/presentation/widgets/user_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -119,7 +120,23 @@ class _HomePageState extends State<HomePage> {
                   hintText: "Search"),
             )),
         IconButton(
-            onPressed: () {},
+            onPressed: () async{
+              await showDialog(context: context, builder: (context){
+
+                return SimpleDialog(title: Text("Filter By"),children: [TextButton(onPressed: (){
+
+                  Navigator.pop(context);
+                  _filterByCountry();
+
+                }, child: Text("Nationality")),TextButton(onPressed: (){
+Navigator.pop(context);
+                  _filterByGender();
+
+
+                }, child: Text("Gender"))]);
+              });
+
+            },
             icon: const Icon(
               Icons.filter_alt_rounded,
               color: Colors.grey,
@@ -128,4 +145,37 @@ class _HomePageState extends State<HomePage> {
     );
 
   }
+  _filterByGender()async {
+
+    return    await showDialog(context: context, builder: (context){
+
+      return SimpleDialog(title: Text("Filter By Gender"),children: [TextButton(onPressed: (){
+        Navigator.pop(context);
+
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>FilterPage(gender: "male")));
+
+      }, child: Text("Male")),TextButton(onPressed: (){
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>FilterPage(gender: "female")));
+
+      }, child: Text("Female"))]);
+    });
+
+  }
+  _filterByCountry() async {
+
+    var listOfCountries=["AU","BR", "CA", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IR", "NO", "NL", "NZ", "TR", "US"];
+    return    await showDialog(context: context, builder: (context){
+
+      return SimpleDialog(title: const Text("Filter By Gender"),children: [
+for(var country in listOfCountries)
+        TextButton(onPressed: (){
+Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>FilterPage(country:country)));
+
+      }, child: Text(country)),]);
+    });
+  }
+
+
 }

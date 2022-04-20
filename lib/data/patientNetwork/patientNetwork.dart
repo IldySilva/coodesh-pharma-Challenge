@@ -22,8 +22,21 @@ Future<List<Patient>> getPatients({limit=50})async{
     return returnedList;
 
   }
-
-
 }
+  Future<List<Patient>> getPatientsByGenderOrCountry({gender,country})async{
+    List<Patient> returnedList=[];
+    try{
+      var response=await  repository.fetchData("https://randomuser.me/api/?gender=$gender&results=50");
+      for (var patientJson in jsonDecode(response.body)["results"]) {
+        returnedList.add(Patient.fromJson(patientJson));
+      }
+      return returnedList;
+    }
+    on Exception catch(e){
+      print(e);
+      return returnedList;
+
+    }
+  }
 
 }

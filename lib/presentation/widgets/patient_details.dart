@@ -51,7 +51,7 @@ class PatientDetails extends StatelessWidget {
             Container(
               child: ListTile(
                 title: Text(
-                  patient.id!.name!,
+                  patient.id?.name??"No Name",
                   style: TextStyle(fontSize: 18),
                 ),
                 subtitle: Text("ID"),
