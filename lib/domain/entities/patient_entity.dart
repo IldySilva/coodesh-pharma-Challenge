@@ -254,7 +254,7 @@ class Id {
   Id({this.name});
 
   Id.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
+    name = json['value'];
   }
 
   Map<String, dynamic> toJson() {

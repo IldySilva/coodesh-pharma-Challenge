@@ -71,18 +71,15 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                   child: PagedListView<int, Patient>(
-
                     pagingController: _pagingController,
                     builderDelegate: PagedChildBuilderDelegate<Patient>(
-
-
                         newPageProgressIndicatorBuilder: (c) => Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                  CircularProgressIndicator(),
-                                  SizedBox(),
+                                  SizedBox(width: 8,),
                                   Text("Loading More")
                                 ],
                               ),
