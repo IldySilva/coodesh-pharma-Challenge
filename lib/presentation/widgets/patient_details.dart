@@ -38,14 +38,16 @@ class PatientDetails extends StatelessWidget {
                   width: 10,
                 ),
                 Container(
-                    width: Get.width * 0.6,
+                    width: Get.width * 0.7,
                     child: ListTile(
                       title: Text(
                         nameUser,
                         style: TextStyle(fontSize: 18),
                       ),
                       subtitle: Text(patient.email!),
+                    trailing: IconButton(onPressed: ()=>Navigator.pop(context),icon: Icon(Icons.close),),
                     ))
+
               ],
             ),
             Container(
